@@ -2,6 +2,7 @@
 using MISA.AMIS.Core.Exceptions;
 using MISA.AMIS.Core.Interfaces.Repository;
 using MISA.AMIS.Core.Interfaces.Service;
+using MISA.AMIS.Core.Properties;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -68,7 +69,7 @@ namespace MISA.AMIS.Core.Services
         {
             //t.EntityState = Enum.EntityState.Update;
             // Validate dữ liệu:
-            var isValid = ValidateObject(t);
+            var isValid = ValidateObject(t, false);
             if (isValid == true)
             {
                 return _baseRepository.Update(t, id);
@@ -84,7 +85,7 @@ namespace MISA.AMIS.Core.Services
         /// </summary>
         /// <param name="t">Thông tin của thực thể.</param>
         /// CreatedBy: dqdat (12/06/2021)
-        private bool ValidateObject(T t)
+        private bool ValidateObject(T t, bool isInsert = true)
         {
             var isValid = true;
 
@@ -108,16 +109,17 @@ namespace MISA.AMIS.Core.Services
                 var propName = prop.Name;
 
 
-                var propertyRequired = prop.GetCustomAttributes(typeof(PropertyRequired), true);
+                var propertyRequireds = prop.GetCustomAttributes(typeof(PropertyRequired), true);
 
 
                 // Check các thông tin không được phép trống:
-                if (propertyRequired.Length > 0)
+                if (propertyRequireds.Length > 0)
                 {
+                    var propertyRequired = propertyRequireds[0] as PropertyRequired;
                     if (propType == typeof(string) && propValue == null || propValue.ToString() == string.Empty)
                     {
                         isValid = false;
-                        throw new ValidateException($"Không được để trống {propName}", null);
+                        throw new ValidateException(string.Format(ValidateResources.NotEmpty, propertyRequired._msgError), null);
                     }
                 }
 
@@ -128,7 +130,7 @@ namespace MISA.AMIS.Core.Services
             // Validate đặc thù cho từng đối tượng:
             if (isValid == true)
             {
-                isValid = ValidateCustom(t);
+                isValid = ValidateCustom(t,isInsert);
             }
             return isValid;
         }
@@ -139,7 +141,7 @@ namespace MISA.AMIS.Core.Services
         /// <param name="t">Một thực thể</param>
         /// <returns></returns>
         /// CreatedBy: dqdat (12/06/2021)
-        protected virtual bool ValidateCustom(T t)
+        protected virtual bool ValidateCustom(T t, bool isInsert)
         {
             return true;
         }

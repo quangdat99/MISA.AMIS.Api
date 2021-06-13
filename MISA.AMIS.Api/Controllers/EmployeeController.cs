@@ -41,5 +41,47 @@ namespace MISA.AMIS.Api.Controllers
             _employeeRepository = employeeRepository;
         }
         #endregion
+
+        #region METHODS
+        /// <summary>
+        /// Lấy mã nhân viên mới nhất
+        /// </summary>
+        /// <returns>
+        /// 200 - Có dữ liệu trả về.
+        /// 500 - Lỗi server.
+        /// </returns>
+        /// CreatedBy: dqdat (13/06/2021)
+        [HttpGet("NewEmployeeCode")]
+        public IActionResult GetNewEmployeeCode()
+        {
+            return Ok(_employeeRepository.GetNewEmployeeCode());
+        }
+
+        /// <summary>
+        /// Check mã nhân viên có trùng với nhân viên trên hệ thống.
+        /// </summary>
+        /// <param name="employeeCode"></param>
+        /// <param name="employeeId"></param>
+        /// <returns>True - Đã tồn tại, false - Chưa tồn tại</returns>
+        [HttpGet("CheckEmployeeCodeExist")]
+        public IActionResult CheckEmployeeCodeExist(string employeeCode, Guid? employeeId)
+        {
+            return Ok(_employeeRepository.CheckEmployeeCodeExist(employeeCode, employeeId));
+        }
+
+        /// <summary>
+        /// Lấy tổng số nhân viên và danh sách nhân viên có lọc
+        /// </summary>
+        /// <param name="employeeFilter"></param>
+        /// <param name="pageSize"></param>
+        /// <param name="pageNumber"></param>
+        /// <returns></returns>
+        /// CreatedBy: dqdat (13/06/2021)
+        [HttpGet("EmployeeFilter")]
+        public EmployeeFilter GetEmployeeFilter(string employeeFilter, string pageSize, string pageNumber)
+        {
+            return _employeeRepository.GetEmployeeFilter(employeeFilter, pageSize, pageNumber);
+        }
+        #endregion
     }
 }

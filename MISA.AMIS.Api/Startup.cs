@@ -7,6 +7,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using MISA.AMIS.Core.Exceptions;
 using MISA.AMIS.Core.Interfaces.Repository;
 using MISA.AMIS.Core.Interfaces.Service;
 using MISA.AMIS.Core.Services;
@@ -30,6 +31,8 @@ namespace MISA.AMIS.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddControllers(options =>
+               options.Filters.Add(new HttpResponseExceptionFilter()));
 
             services.AddControllers();
             services.AddSwaggerGen(c =>
@@ -58,6 +61,12 @@ namespace MISA.AMIS.Api
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            // global cors policy
+            app.UseCors(x => x
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
 
             app.UseAuthorization();
 

@@ -9,6 +9,7 @@ namespace MISA.AMIS.Core.Enums
     /// <summary>
     /// Giới tính
     /// </summary>
+    /// CreatedBy: dqdat (13/06/2021)
     public enum GenderEnum
     {
         /// <summary>

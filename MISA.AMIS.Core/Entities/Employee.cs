@@ -1,4 +1,5 @@
-﻿using MISA.AMIS.Core.Enums;
+﻿using MISA.AMIS.Core.Attributes;
+using MISA.AMIS.Core.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,11 +22,13 @@ namespace MISA.AMIS.Core.Entities
         /// <summary>
         /// Mã nhân viên
         /// </summary>
+        [PropertyRequired("Mã nhân viên")]
         public string EmployeeCode { get; set; }
 
         /// <summary>
         /// Tên nhân viên
         /// </summary>
+        [PropertyRequired("Tên nhân viên")]
         public string EmployeeName { get; set; }
 
         /// <summary>
@@ -41,6 +44,7 @@ namespace MISA.AMIS.Core.Entities
         /// <summary>
         /// Id của đơn vị nhân viên
         /// </summary>
+        [PropertyRequired("Đơn vị nhân viên")]
         public Guid? EmployeeDepartmentId { get; set; }
 
         /// <summary>

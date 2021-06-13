@@ -13,6 +13,10 @@ namespace MISA.AMIS.Core.Attributes
     [AttributeUsage(AttributeTargets.Property)]
     public class PropertyRequired : Attribute
     {
-
+        public string _msgError;
+        public PropertyRequired(string msgError = "")
+        {
+            _msgError = msgError;
+        }
     }
 }
