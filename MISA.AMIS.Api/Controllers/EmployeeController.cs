@@ -59,10 +59,16 @@ namespace MISA.AMIS.Api.Controllers
 
         /// <summary>
         /// Check mã nhân viên có trùng với nhân viên trên hệ thống.
+        /// 
         /// </summary>
-        /// <param name="employeeCode"></param>
-        /// <param name="employeeId"></param>
-        /// <returns>True - Đã tồn tại, false - Chưa tồn tại</returns>
+        /// <param name="employeeCode">Mã nhân viên</param>
+        /// <param name="employeeId">Id nhân viên</param>
+        /// <returns>
+        /// 200 - Có dữ liệu: True - Đã tồn tại, false - Chưa tồn tại     
+        /// 204 - Không có dữ liệu
+        /// 400 - Lỗi client
+        /// 500 - Lỗi server
+        /// </returns>
         [HttpGet("CheckEmployeeCodeExist")]
         public IActionResult CheckEmployeeCodeExist(string employeeCode, Guid? employeeId)
         {
@@ -72,10 +78,15 @@ namespace MISA.AMIS.Api.Controllers
         /// <summary>
         /// Lấy tổng số nhân viên và danh sách nhân viên có lọc
         /// </summary>
-        /// <param name="employeeFilter"></param>
-        /// <param name="pageSize"></param>
-        /// <param name="pageNumber"></param>
-        /// <returns></returns>
+        /// <param name="employeeFilter">filter tìm kiếm</param>
+        /// <param name="pageSize">kích thước trang</param>
+        /// <param name="pageNumber">chỉ số trang</param>
+        /// <returns>        
+        /// 200 - Có dữ liệu
+        /// 204 - Không có dữ liệu
+        /// 400 - Lỗi client
+        /// 500 - Lỗi server
+        /// </returns>
         /// CreatedBy: dqdat (13/06/2021)
         [HttpGet("EmployeeFilter")]
         public EmployeeFilter GetEmployeeFilter(string employeeFilter, string pageSize, string pageNumber)
