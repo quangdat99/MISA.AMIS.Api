@@ -104,7 +104,7 @@ namespace MISA.AMIS.Api.Controllers
         /// 400 - Lỗi client
         /// 500 - Lỗi server
         /// </returns>
-        /// CreatedBy: dqdat (12/06/2021)
+        /// CreatedBy: dqdat (14/06/2021)
         [HttpGet("ExportExcel")]
         public IActionResult ExportExcel()
         {

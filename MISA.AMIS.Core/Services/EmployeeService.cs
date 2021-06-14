@@ -48,16 +48,17 @@ namespace MISA.AMIS.Core.Services
         /// Export file excel danh sách nhân viên
         /// </summary>
         /// <returns></returns>
-        /// CreatedBy: dqdat (12/06/2021)
+        /// CreatedBy: dqdat (14/06/2021)
         public Stream ExportExcel()
         {
             var res = _employeeRepository.GetAll();
             var listEmployees = res.ToList();
             var stream = new MemoryStream();
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             var package = new ExcelPackage(stream);
             var workSheet = package.Workbook.Worksheets.Add("DANH SÁCH NHÂN VIÊN");
 
-            // Thêm title cho file excel
+            // Thêm title và style title cho file excel
             using (var range = workSheet.Cells["A1:I1"])
             {
                 range.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
@@ -86,8 +87,13 @@ namespace MISA.AMIS.Core.Services
                 range.Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
                 range.Style.Fill.PatternType = ExcelFillStyle.Solid;
                 range.Style.Fill.BackgroundColor.SetColor(Color.LightGray);
-                range.Style.Border.BorderAround(ExcelBorderStyle.Thin);
                 range.Style.Font.Bold = true;
+
+                // Thêm border cho các ô
+                for (int j = 1; j <= 9; j++)
+                {
+                    workSheet.Cells[3,j].Style.Border.BorderAround(ExcelBorderStyle.Thin);
+                }
             }
 
             // set độ rộng cho cột.
@@ -116,9 +122,10 @@ namespace MISA.AMIS.Core.Services
                 workSheet.Cells[i + 4, 8].Value = e.BankAccountNumber;
                 workSheet.Cells[i + 4, 9].Value = e.BankName;
 
-                using (var range = workSheet.Cells[i + 4, 1, i + 4, 9])
+                // Thêm border cho các ô
+                for (int j = 1; j <= 9; j++)
                 {
-                    range.Style.Border.BorderAround(ExcelBorderStyle.Thin);
+                    workSheet.Cells[i + 4, j].Style.Border.BorderAround(ExcelBorderStyle.Thin);
                 }
 
                 i++;

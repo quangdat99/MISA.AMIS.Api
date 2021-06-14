@@ -20,7 +20,7 @@ namespace MISA.AMIS.Core.Interfaces.Service
         /// Export file Excel danh sách nhân viên.
         /// </summary>
         /// <returns></returns>
-        /// CreatedBy: dqdat (12/06/2021)
+        /// CreatedBy: dqdat (14/06/2021)
         public Stream ExportExcel();
 
     }
