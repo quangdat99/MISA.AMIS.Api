@@ -36,3 +36,6 @@ E:\MISA\AMIS\MISA.AMIS\MISA.AMIS.Api\obj\Debug\net5.0\MISA.AMIS.Api.genruntimeco
 E:\MISA\AMIS\MISA.AMIS\MISA.AMIS.Api\bin\Debug\net5.0\Microsoft.DotNet.PlatformAbstractions.dll
 E:\MISA\AMIS\MISA.AMIS\MISA.AMIS.Api\bin\Debug\net5.0\Microsoft.Extensions.DependencyModel.dll
 E:\MISA\AMIS\MISA.AMIS\MISA.AMIS.Api\bin\Debug\net5.0\Newtonsoft.Json.dll
+E:\MISA\AMIS\MISA.AMIS\MISA.AMIS.Api\bin\Debug\net5.0\EPPlus.dll
+E:\MISA\AMIS\MISA.AMIS\MISA.AMIS.Api\bin\Debug\net5.0\Microsoft.IO.RecyclableMemoryStream.dll
+E:\MISA\AMIS\MISA.AMIS\MISA.AMIS.Api\bin\Debug\net5.0\System.Xml.XPath.XmlDocument.dll
