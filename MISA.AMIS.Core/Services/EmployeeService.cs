@@ -127,6 +127,8 @@ namespace MISA.AMIS.Core.Services
                 {
                     workSheet.Cells[i + 4, j].Style.Border.BorderAround(ExcelBorderStyle.Thin);
                 }
+                // Căn chỉnh giữa cho ô ngày sinh
+                workSheet.Cells[i + 4, 5].Style.HorizontalAlignment = ExcelHorizontalAlignment.Center;
 
                 i++;
             }
